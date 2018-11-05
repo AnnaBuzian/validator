@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ trans('app.title') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ trans('app.title') }}
                     </a>
                 </div>
 
@@ -43,8 +43,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
+                                <span class="fa fa-facebook-official"></span>
+                            </a>
+                            <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
+                                <span class="fa fa-google"></span>
+                            </a>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>

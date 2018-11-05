@@ -20,3 +20,9 @@ This builds the containers and runs them in the background, while this
 ````
 docker-compose up
 ````
+
+Deployment of the project:
+````
+docker-compose exec app composer install
+docker-compose exec app npm install
+````
