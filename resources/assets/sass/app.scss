@@ -5,13 +5,20 @@
 // Variables
 @import "variables";
 
-@import "~font-awesome/scss/font-awesome";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 @import "~bootstrap-social/bootstrap-social";
 
-.background-welcome {
-  background: url("../images/themeforest.jpg");
+body, html {
+  height: 100%;
+  margin: 0;
 }
+
+.background-welcome {
+  background: url("../images/themeforest.jpg") no-repeat center center;
+  height: 100%;
+  background-size: cover;
+}
+
+@import '~font-awesome/scss/font-awesome.scss';

@@ -1,5 +1,13 @@
 FROM php:7.2-fpm
 
+ARG HTTP_PROXY
+ARG PHP_XDEBUG_PORT
+
+ENV http_proxy=$HTTP_PROXY \
+    https_proxy=$HTTP_PROXY \
+    DEBIAN_FRONTEND=noninteractive \
+    PHP_XDEBUG_VERSION=master
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        curl \
@@ -24,10 +32,12 @@ RUN docker-php-ext-configure gd \
 
 RUN apt-get update -yqq \
     && apt-get install -y apt-utils \
+    && pear config-set http_proxy $HTTP_PROXY \
     && pecl channel-update pecl.php.net
 
 # DOCKER PHP EXTS
-RUN docker-php-ext-install bcmath bz2 dom exif fileinfo hash iconv json mbstring opcache pcntl pgsql xml zip
+RUN docker-php-ext-install bcmath bz2 dom exif fileinfo hash iconv json mbstring opcache pcntl xml zip \
+        pgsql pdo pdo_pgsql
 
 # PECL
 RUN pecl install imagick xdebug
@@ -59,6 +69,10 @@ RUN echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebu
 RUN echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.idekey=\"PHPSTORM\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-RUN echo "xdebug.remote_port=$PHP_XDEBUG_PORT" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.remote_port=${PHP_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Затираем данные proxy auth
+ENV http_proxy='' \
+    https_proxy=''
 
 WORKDIR /var/www/validator

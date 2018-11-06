@@ -67,32 +67,34 @@
             }
         </style>
     </head>
-    <body class="background-welcome">
-        <nav class="navbar navbar-static-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand title" href="{{ url('/') }}">
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                        {{ trans('app.title') }}
-                    </a>
+    <body>
+        <div class="background-welcome">
+            <nav class="navbar navbar-static-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand title" href="{{ url('/') }}">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            {{ trans('app.title') }}
+                        </a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Route::has('login'))
+                            <div class="top-right links">
+                                @auth
+                                    <a href="{{ url('/home') }}">Home</a>
+                                @else
+                                    <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
+                                        <span class="fa fa-facebook-official"></span>
+                                    </a>
+                                    <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
+                                        <span class="fa fa-google"></span>
+                                    </a>
+                                @endauth
+                            </div>
+                        @endif
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (Route::has('login'))
-                        <div class="top-right links">
-                            @auth
-                                <a href="{{ url('/home') }}">Home</a>
-                            @else
-                                <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
-                                    <span class="fa fa-facebook-official"></span>
-                                </a>
-                                <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
-                                    <span class="fa fa-google"></span>
-                                </a>
-                            @endauth
-                        </div>
-                    @endif
-                </ul>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </body>
 </html>

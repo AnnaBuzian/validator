@@ -1,4 +1,12 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=d09aa8ed4a6cc9421368",
+    "/css/app.css": "/css/app.css?id=31205d36457b7f9a9b53",
+    "/js/app.js.map": "/js/app.js.map?id=a97364d5b7a85c86eda9",
+    "/css/app.css.map": "/css/app.css.map?id=a1607ab856bf755a26c4",
+    "/fonts/fontawesome-webfont.eot": "/fonts/fontawesome-webfont.eot?id=1fb8a705b37156056275",
+    "/fonts/fontawesome-webfont.svg": "/fonts/fontawesome-webfont.svg?id=912ec66d7572ff821749",
+    "/fonts/fontawesome-webfont.ttf": "/fonts/fontawesome-webfont.ttf?id=e1dd9adb4f69bb9a0bdc",
+    "/fonts/fontawesome-webfont.woff": "/fonts/fontawesome-webfont.woff?id=a7bbeb589ae63e018872",
+    "/fonts/fontawesome-webfont.woff2": "/fonts/fontawesome-webfont.woff2?id=68560c510686599ffbc9",
+    "/fonts/FontAwesome.otf": "/fonts/FontAwesome.otf?id=b5744b64fceaad0a121a"
 }

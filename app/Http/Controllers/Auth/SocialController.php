@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use App\SocialAccount;
+use Laravel\Socialite\Two\GoogleProvider;
 
 /**
  * Class SocialController
@@ -28,6 +30,7 @@ class SocialController extends Controller
      */
     public function handleProviderCallback($provider)
     {
+        /** @var GoogleProvider $socialiteUser */
         $socialiteUser = Socialite::driver($provider)->user();
 
         $user = $this->findOrCreateUser($provider, $socialiteUser);
@@ -55,11 +58,16 @@ class SocialController extends Controller
             return $user;
         }
 
+        /** @var User $user */
         $user = User::create([
             'name' => $socialiteUser->getName(),
             'email' => $socialiteUser->getEmail(),
             'password' => bcrypt(str_random(25)),
         ]);
+
+        $user
+            ->roles()
+            ->attach(Role::where('name', 'employee')->first());
 
         $this->addSocialAccount($provider, $user, $socialiteUser);
 
@@ -103,7 +111,7 @@ class SocialController extends Controller
         SocialAccount::create([
             'user_id' => $user->id,
             'provider' => $provider,
-            'provider_id' => $socialiteUser->getId(),
+            'provider_id' => $socialiteUser->id,
             'token' => $socialiteUser->token,
         ]);
     }

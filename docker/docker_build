@@ -1,0 +1,11 @@
+#!/bin/bash
+set -a
+
+FILE=proxy.sh
+
+if [ ! -f "FILE" ]; then
+    source proxy.sh
+fi
+
+docker-compose rm --stop --force
+docker-compose up -d --build

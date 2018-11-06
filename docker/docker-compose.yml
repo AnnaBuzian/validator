@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: ./webserver
-      dockerfile: .Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ${APP_PATH}:/var/www/validator
     ports:
@@ -15,14 +15,28 @@ services:
   app:
     build:
       context: ./app
-      dockerfile: .Dockerfile
+      dockerfile: Dockerfile
+      args:
+        HTTP_PROXY: ${HTTP_PROXY}
+        PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT}
     volumes:
       - ${APP_PATH}:/var/www/validator
     ports:
       - ${PHP_PORT}:9000
     environment:
       TZ: ${APP_TZ}
-      PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT}
+      COMPOSER_ALLOW_SUPERUSER: 1
+
+  db:
+    image: postgres:10.5
+    environment:
+    - POSTGRES_DB=${DB_NAME}
+    - POSTGRES_USER=${DB_USER}
+    - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+    - 5432:5432
+    volumes:
+    - ./postgresql/:/docker-entrypoint-initdb.d/
 
   redis:
     image: redis:5.0
