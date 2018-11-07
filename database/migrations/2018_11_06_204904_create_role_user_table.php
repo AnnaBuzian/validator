@@ -17,13 +17,19 @@ class CreateRoleUserTable extends Migration
         Schema::create('role_user', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->string('role_id')->unsigned();
-            $table->string('user_id')->unsigned();
+            $table->uuid('role_id')->unsigned();
+            $table->uuid('user_id')->unsigned();
+
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
 
         DB::statement('ALTER TABLE role_user ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE role_user ALTER COLUMN role_id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE role_user ALTER COLUMN user_id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

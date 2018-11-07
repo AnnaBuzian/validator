@@ -30,7 +30,6 @@ class CreateSocialAccountsTable extends Migration
         });
 
         DB::statement('ALTER TABLE social_accounts ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE social_accounts ALTER COLUMN user_id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

@@ -27,7 +27,7 @@ class Queue extends Model
     protected $primaryKey = 'id';
 
     /** @var array  */
-    protected $fillable = ['pathToFile', 'createDateTime', 'startDateTime', 'finishDateTime', 'isValid'];
+    protected $fillable = ['pathToFile', 'startDateTime', 'finishDateTime', 'isValid'];
 
 
     /**

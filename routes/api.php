@@ -22,3 +22,7 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
     Route::resource('questions', 'QuestionsController', ['except' => ['create', 'edit']]);
 });
+
+Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
+    Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+});

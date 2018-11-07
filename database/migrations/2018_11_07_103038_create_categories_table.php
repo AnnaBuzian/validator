@@ -19,7 +19,6 @@ class CreateCategoriesTable extends Migration
             $table->primary('id');
             $table->string('name', 100)->unsigned()->nullable();
             $table->integer('priority')->nullable()->default(0);
-            $table->string('correctAnswer');
             $table->timestamps();
         });
 

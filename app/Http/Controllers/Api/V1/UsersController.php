@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class QueuesController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -81,14 +81,5 @@ class QueuesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function uploadFile(Request $request)
-    {
-        if($request->hasFile('image')){
-            $name = time()."_".$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $name);
-        }
-        return response()->json(asset("images/$name"),201);
     }
 }

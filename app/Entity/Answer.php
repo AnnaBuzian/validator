@@ -22,7 +22,7 @@ class Answer extends Model
     protected $primaryKey = 'id';
 
     /** @var array  */
-    protected $fillable = ['name', 'priority'];
+    protected $fillable = ['answer'];
 
 
     /**

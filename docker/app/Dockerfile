@@ -32,7 +32,6 @@ RUN docker-php-ext-configure gd \
 
 RUN apt-get update -yqq \
     && apt-get install -y apt-utils \
-    && pear config-set http_proxy $HTTP_PROXY \
     && pecl channel-update pecl.php.net
 
 # DOCKER PHP EXTS

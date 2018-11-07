@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Entity\Answer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class AnswersController extends Controller
      */
     public function index()
     {
-        //
+        return Answer::all();
     }
 
     /**
@@ -35,7 +36,8 @@ class AnswersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $answer = Answer::create($request->all());
+        return $answer;
     }
 
     /**
@@ -46,7 +48,7 @@ class AnswersController extends Controller
      */
     public function show($id)
     {
-        //
+        return Answer::findOrFail($id);
     }
 
     /**
@@ -69,7 +71,10 @@ class AnswersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        $answer->update($request->all());
+
+        return $answer;
     }
 
     /**
@@ -80,6 +85,8 @@ class AnswersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        $answer->delete();
+        return '';
     }
 }

@@ -53,6 +53,10 @@
                                 </a>
                             </div>
                         @else
+                            @if (!Auth::guest() && Auth::user()->hasRole('admin'))
+                                <li><a href="{{ url('/admin') }}">{{'auth.admin'}}</a></li>
+                            @endif
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

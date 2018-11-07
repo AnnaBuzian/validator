@@ -17,17 +17,25 @@ class CreateQueuesTable extends Migration
         Schema::create('queues', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
+            $table->string('pathToFile');
+            $table->timestamp('startDateTime')->nullable();
+            $table->timestamp('finishDateTime')->nullable();
+            $table->boolean('isValid')->nullable();
             $table->uuid('category_id');
+            $table->uuid('user_id')->nullable();
             $table->timestamps();
+
 
             $table->foreign('category_id')
                 ->references('id')
-                ->on('categories')
-                ->onDelete('CASCADE');
+                ->on('categories');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
 
         DB::statement('ALTER TABLE queues ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE queues ALTER COLUMN category_id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

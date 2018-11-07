@@ -1,11 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
-class CreateQuestionAnswerTable extends Migration
+class CreateAnswerQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,22 @@ class CreateQuestionAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_answer', function (Blueprint $table) {
+        Schema::create('answer_question', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
             $table->uuid('question_id')->unsigned();
             $table->uuid('answer_id')->unsigned();
+
+            $table->foreign('question_id')
+                ->references('id')
+                ->on('questions');
+
+            $table->foreign('answer_id')
+                ->references('id')
+                ->on('answers');
         });
 
-        DB::statement('ALTER TABLE question_answer ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE question_answer ALTER COLUMN question_id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE question_answer ALTER COLUMN answer_id SET DEFAULT uuid_generate_v4();');
+        DB::statement('ALTER TABLE answer_question ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
     }
 
     /**
@@ -33,6 +39,6 @@ class CreateQuestionAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_answer');
+        Schema::dropIfExists('answer_question');
     }
 }

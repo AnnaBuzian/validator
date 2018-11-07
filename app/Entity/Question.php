@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Question
@@ -34,6 +36,14 @@ class Question extends Model
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function correctAnswer(): BelongsTo
+    {
+        return $this->belongsTo(Answer::class);
     }
 
 

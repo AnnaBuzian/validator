@@ -20,16 +20,11 @@ class CreateQuestionsTable extends Migration
             $table->uuid('category_id');
             $table->string('question', 256)->nullable();
             $table->integer('priority')->nullable()->default(0);
+            $table->uuid('correctAnswer');
             $table->timestamps();
-
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('CASCADE');
         });
 
         DB::statement('ALTER TABLE questions ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
-        DB::statement('ALTER TABLE questions ALTER COLUMN category_id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

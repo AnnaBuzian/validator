@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Role extends Model
 {
+    use Uuids;
+
     const ROLE_EMPLOYEE = 'employee';
     const ROLE_ADMIN = 'admin';
     const ROLE_MANAGER = 'manager';
