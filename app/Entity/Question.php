@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Question extends Model
 {
+    use Uuids;
+
     /** @var bool  */
     public $incrementing = false;
 

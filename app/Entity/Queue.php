@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Traits\Uuids;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Queue extends Model
 {
+    use Uuids;
+
     /** @var bool  */
     public $incrementing = false;
 

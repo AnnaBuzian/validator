@@ -7,8 +7,9 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
 @import "~bootstrap-social/bootstrap-social";
+
+@import '~font-awesome/scss/font-awesome.scss';
 
 body, html {
   height: 100%;
@@ -45,10 +46,13 @@ html, body {
   color: #fff;
   padding: 0 25px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bold;
   letter-spacing: .1rem;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-@import '~font-awesome/scss/font-awesome.scss';
+
+.navbar-default .navbar-nav>li>a {
+  font-weight: bold;
+}

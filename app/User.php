@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Traits\Uuids;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Uuids;
 
     /** @var bool  */
     public $incrementing = false;

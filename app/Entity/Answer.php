@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Answer extends Model
 {
+    use Uuids;
+
     /** @var bool  */
     public $incrementing = false;
 

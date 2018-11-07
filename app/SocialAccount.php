@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class SocialAccount extends Model
 {
+    use Uuids;
+
     /** @var bool  */
     public $incrementing = false;
 
