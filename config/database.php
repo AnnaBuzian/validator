@@ -11,11 +11,11 @@ if (getenv('REDIS_URL')) {
 if (getenv('DATABASE_URL')) {
     $url = parse_url(getenv('DATABASE_URL'));
 
-    putenv('DB_HOST='.parse_url($url, PHP_URL_HOST));
-    putenv('DB_PORT='.parse_url($url, PHP_URL_PORT));
-    putenv('DB_DATABASE='.substr(parse_url($url, PHP_URL_PATH), 1));
-    putenv('DB_USERNAME='.parse_url($url, PHP_URL_USER));
-    putenv('DB_PASSWORD='.parse_url($url, PHP_URL_PASS));
+    putenv('DB_HOST='.array_get($url, PHP_URL_HOST));
+    putenv('DB_PORT='.array_get($url, PHP_URL_PORT));
+    putenv('DB_DATABASE='.substr(array_get($url, PHP_URL_PATH), 1));
+    putenv('DB_USERNAME='.array_get($url, PHP_URL_USER));
+    putenv('DB_PASSWORD='.array_get($url, PHP_URL_PASS));
 }
 
 return [
