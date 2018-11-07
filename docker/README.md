@@ -44,5 +44,5 @@ docker-compose exec app npm install
 docker-compose exec app bash -c \
     "sudo chown -R www-data:www-data /home/www-data \
     && npm install \
-    && npm dev"
+    && npm run production"
 ````

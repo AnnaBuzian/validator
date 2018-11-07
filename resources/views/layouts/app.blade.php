@@ -29,6 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <span class="glyphicon glyphicon-list-alt"></span>
                         {{ trans('app.title') }}
                     </a>
                 </div>
@@ -43,12 +44,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
-                                <span class="fa fa-facebook-official"></span>
-                            </a>
-                            <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
-                                <span class="fa fa-google"></span>
-                            </a>
+                            <div class="top-right links">
+                                <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
+                                    <span class="fa fa-facebook-official"></span>
+                                </a>
+                                <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
+                                    <span class="fa fa-google"></span>
+                                </a>
+                            </div>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>

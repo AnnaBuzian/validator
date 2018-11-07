@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class SocialAccount
- * @package App
+ * Class Queue
+ * @package App\Entity
  */
-class SocialAccount extends Model
+class Queue extends Model
 {
     /** @var bool  */
     public $incrementing = false;
@@ -24,11 +24,20 @@ class SocialAccount extends Model
     protected $primaryKey = 'id';
 
     /** @var array  */
-    protected $guarded = [];
+    protected $fillable = ['pathToFile', 'createDateTime', 'startDateTime', 'finishDateTime', 'isValid'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
+    /**
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {

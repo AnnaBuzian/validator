@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateSocialAccountsTable extends Migration
 {
@@ -14,8 +15,9 @@ class CreateSocialAccountsTable extends Migration
     public function up()
     {
         Schema::create('social_accounts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->uuid('id');
+            $table->primary('id');
+            $table->uuid('user_id');
             $table->string('provider_id');
             $table->string('provider');
             $table->string('token');
@@ -26,6 +28,9 @@ class CreateSocialAccountsTable extends Migration
                 ->on('users')
                 ->onDelete('CASCADE');
         });
+
+        DB::statement('ALTER TABLE social_accounts ALTER COLUMN id SET DEFAULT uuid_generate_v4();');
+        DB::statement('ALTER TABLE social_accounts ALTER COLUMN user_id SET DEFAULT uuid_generate_v4();');
     }
 
     /**

@@ -12,65 +12,11 @@
 
         <!-- Styles -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                color: #fff;
-                font-weight: bold;;
-                font-size: 20px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
         <div class="background-welcome">
             <nav class="navbar navbar-static-top">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="navbar-header">
                         <a class="navbar-brand title" href="{{ url('/') }}">
                             <span class="glyphicon glyphicon-list-alt"></span>
@@ -81,8 +27,14 @@
                         @if (Route::has('login'))
                             <div class="top-right links">
                                 @auth
-                                    <a href="{{ url('/home') }}">Home</a>
+                                    <a href="{{ url('/home') }}">
+                                        <span class="glyphicon glyphicon-home"></span>
+                                        {{trans('app.home')}}
+                                    </a>
                                 @else
+                                    <a href="{{ route('login') }}">{{trans('auth.Login')}}</a>
+                                    <a href="{{ route('register') }}">{{trans('auth.Register')}}</a>
+
                                     <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
                                         <span class="fa fa-facebook-official"></span>
                                     </a>

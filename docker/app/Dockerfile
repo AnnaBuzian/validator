@@ -71,6 +71,31 @@ RUN echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-
 RUN echo "xdebug.idekey=\"PHPSTORM\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.remote_port=${PHP_XDEBUG_PORT}" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+RUN apt-get install -y sudo
+
+# Create new USER
+ENV HOME=/home/www-data \
+    USER=www-data \
+    GROUP=www-data
+
+# Create the home directory for the new app user.
+RUN mkdir -p $HOME
+
+# Create an app user so our program doesn't run as root.
+RUN adduser $USER sudo
+RUN echo "$USER:$GROUP" | chpasswd
+RUN echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN chown -R $USER:$GROUP $HOME
+
+## NPM user
+RUN npm config set user www-data
+
+# Permission fix
+RUN usermod -u 1000 www-data
+
+RUN mkdir -p /composer
+RUN sudo chown -R $USER /composer
+
 # Затираем данные proxy auth
 ENV http_proxy='' \
     https_proxy=''

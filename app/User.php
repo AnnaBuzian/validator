@@ -9,6 +9,17 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    /** @var bool  */
+    public $incrementing = false;
+
+    /** @var array  */
+    protected $casts = [
+        'id' => 'string'
+    ];
+
+    /** @var string  */
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
