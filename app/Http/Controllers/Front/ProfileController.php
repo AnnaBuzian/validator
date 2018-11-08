@@ -8,8 +8,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Category;
 
-class StatisticController extends Controller
+/**
+ * Class ProfileController
+ * @package App\Http\Controllers
+ */
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,7 +23,8 @@ class StatisticController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
+        parent::__construct();
     }
 
     /**
@@ -28,13 +34,12 @@ class StatisticController extends Controller
      */
     public function index()
     {
-        return view('posts.index', [
-            'categories' => category::search($request->input('q'))
+        $categories = Category::search($request->input('q'))
                 ->with('author', 'likes')
                 ->withCount('comments', 'thumbnail', 'likes')
                 ->latest()
-                ->paginate(20)
-        ]);
-        return view('app.statistic');
+                ->paginate(20);
+
+        return view('front.profile.index', compact('categories'));
     }
 }

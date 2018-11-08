@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class SocialAccount
- * @package App
+ * @package App\Entity
  */
 class SocialAccount extends Model
 {

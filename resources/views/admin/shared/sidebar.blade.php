@@ -1,45 +1,33 @@
-<ul class="navbar-nav navbar-sidenav">
-    <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.dashboard')">
-        <a class="nav-link {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-            <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;
-            <span class="nav-link-text">@lang('dashboard.dashboard')</span>
-        </a>
-    </li>
+<div class="col-xs-6 col-sm-2 col-md-4 col-lg-3 sidebar-offcanvas" id="sidebarLeft" role="navigation">
+    <div class="well sidebar-nav">
+    <ul class="nav">
+        <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="{{trans('admin.controlUser')}}">
+            <a class="nav-link {{ request()->route()->named('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;
+                <span class="nav-link-text">{{trans('admin.controlUser')}}</span>
+            </a>
+        </li>
 
-    <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.posts')">
-        <a class="nav-link {{ request()->route()->named('admin.posts.*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
-            <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;
-            <span class="nav-link-text">@lang('dashboard.posts')</span>
-        </a>
-    </li>
+        <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="{{trans('admin.uploadFile')}}">
+            <a class="nav-link {{ request()->route()->named('file.index') ? 'active' : '' }}" href="{{ route('file.index') }}">
+                <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;
+                <span class="nav-link-text">{{trans('admin.uploadFile')}}</span>
+            </a>
+        </li>
 
-    <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.comments')">
-        <a class="nav-link {{ request()->route()->named('admin.comments.*') ? 'active' : '' }}" href="{{ route('admin.comments.index') }}">
-            <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;
-            <span class="nav-link-text">@lang('dashboard.comments')</span>
-        </a>
-    </li>
+        <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="{{trans('admin.controlCategory')}}">
+            <a class="nav-link {{ request()->route()->named('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;
+                <span class="nav-link-text">{{trans('admin.controlCategory')}}</span>
+            </a>
+        </li>
 
-    <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.users')">
-        <a class="nav-link {{ request()->route()->named('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
-            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;
-            <span class="nav-link-text">@lang('dashboard.users')</span>
-        </a>
-    </li>
-
-    <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.media')">
-        <a class="nav-link {{ request()->route()->named('admin.media.*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
-            <i class="fa fa-file" aria-hidden="true"></i>&nbsp;
-            <span class="nav-link-text">@lang('dashboard.media')</span>
-        </a>
-    </li>
-
-</ul>
-
-<ul class="navbar-nav sidenav-toggler">
-    <li class="nav-item">
-        <a class="nav-link text-center" id="sidenavToggler">
-            <i class="fa fa-fw fa-angle-left"></i>
-        </a>
-    </li>
-</ul>
+        <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="{{trans('admin.controlQuestion')}}">
+            <a class="nav-link {{ request()->route()->named('users.index') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;
+                <span class="nav-link-text">{{trans('admin.controlQuestion')}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+</div>

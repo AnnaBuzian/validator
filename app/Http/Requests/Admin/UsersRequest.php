@@ -2,20 +2,16 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Request;
 use App\Rules\AlphaName;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UsersRequest extends FormRequest
+/**
+ * Class UsersRequest
+ * @package App\Http\Requests\Admin
+ */
+class UsersRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
 
     /**
      * Get the validation rules that apply to the request.

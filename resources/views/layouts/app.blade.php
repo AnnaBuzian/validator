@@ -53,8 +53,10 @@
                                 </a>
                             </div>
                         @else
+                            <li><a href="{{ url('/admin/statistic') }}">{{trans('admin.Statistic')}}</a></li>
+                            <li><a href="{{ url('/admin/profile') }}">{{trans('admin.Profile')}}</a></li>
                             @if (!Auth::guest() && Auth::user()->hasRole('admin'))
-                                <li><a href="{{ url('/admin/user') }}">{{trans('auth.admin')}}</a></li>
+                                <li><a href="{{ url('/users') }}">{{trans('auth.admin')}}</a></li>
                             @endif
 
                             <li class="dropdown">

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UsersRequest;
-use App\Role;
-use App\User;
+use App\Entity\Role;
+use App\Entity\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
@@ -18,7 +20,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('admin.users.index', [
-            'users' => User::latest()->paginate(50)
+            'users' => User::latest()->paginate(10)
         ]);
     }
 
@@ -50,5 +52,19 @@ class UserController extends Controller
         $user->roles()->sync($role_ids);
 
         return redirect()->route('admin.users.edit', $user)->withSuccess(__('users.updated'));
+    }
+
+
+    /**
+     * Remove the user from storage.
+     *
+     * @param  \App\Entity\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $user->delete ();
+
+        return response ()->json ();
     }
 }

@@ -14,6 +14,7 @@ use App\Entity\Queue;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Question as QuestionResource;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class CheckingController
@@ -22,7 +23,17 @@ use App\Http\Resources\Question as QuestionResource;
 class CheckingController extends Controller
 {
     /**
-     *
+     * CheckingController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function start(Request $request)
     {
@@ -32,12 +43,13 @@ class CheckingController extends Controller
         $questions = QuestionResource::collection(Question::with('answers')->orderBy('created_at'));
         $contentImage = Storage::get($queue->pathToFile);
 
-        return view('app.start', [
+        return view('front.start', [
             'queue' => $queue,
             'questions' => $questions,
             'contentImage' => $contentImage
         ]);
     }
+
 
     /**
      *

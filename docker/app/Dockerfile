@@ -30,6 +30,8 @@ RUN docker-php-ext-configure gd \
     && docker-php-ext-install gd \
     && apt-get install -y libmagickwand-dev imagemagick
 
+RUN if [ -n ${http_proxy} ]; then  pear config-set http_proxy $http_proxy; fi
+
 RUN apt-get update -yqq \
     && apt-get install -y apt-utils \
     && pecl channel-update pecl.php.net

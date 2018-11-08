@@ -17,15 +17,14 @@
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('/css/admin.css') }}" rel="stylesheet">
 </head>
-<body class="admin-body bg-dark">
+<body>
 @include('admin/shared/navbar')
 
 <div class="content-wrapper bg-light">
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                @include('shared/alerts')
-
+        @include('admin/shared/sidebar')
+            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-8">
                 <div class="card">
                     <div class="card-body">
                         @yield('content')

@@ -1,11 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Entity;
 
 use App\Traits\Uuids;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App\Entity
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -92,5 +96,13 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->hasRole(Role::ROLE_ADMIN);
+    }
+
+    /**
+     * Check if the user has role admin
+     */
+    public function isManager(): bool
+    {
+        return $this->hasRole(Role::ROLE_MANAGER);
     }
 }

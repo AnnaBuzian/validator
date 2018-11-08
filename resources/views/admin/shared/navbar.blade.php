@@ -1,40 +1,57 @@
-<nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-        <!-- Branding Image -->
-        {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
 
         <!-- Collapsed Hamburger -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin-navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            @include('admin/shared/sidebar')
+        <!-- Branding Image -->
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            {{ trans('app.title') }}
+        </a>
 
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
+        <div class="collapse navbar-collapse" id="#admin-navbar-collapse">
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @guest
+                    <div class="top-right links">
+                        <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
+                            <span class="fa fa-facebook-official"></span>
+                        </a>
+                        <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
+                            <span class="fa fa-google"></span>
+                        </a>
+                    </div>
+                @else
+                    <li><a href="{{ url('/admin/statistic') }}">{{trans('admin.Statistic')}}</a></li>
+                    <li><a href="{{ url('/admin/profile') }}">{{trans('admin.Profile')}}</a></li>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        {{ link_to_route('users.show', __('users.public_profile'), Auth::user(), ['class' => 'dropdown-item']) }}
-                        {{ link_to_route('users.edit', __('users.settings'), [], ['class' => 'dropdown-item']) }}
-
-                        <div class="dropdown-divider"></div>
-
-                        <a href="{{ url('/logout') }}"
-                           class="dropdown-item"
-                           onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                            @lang('auth.logout')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <form id="logout-form" class="d-none" action="{{ url('/logout') }}" method="POST">
-                            {{ csrf_field() }}
-                        </form>
-                    </div>
-                </li>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{trans('auth.logout')}}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>

@@ -25,6 +25,7 @@
         "popper.js": "^1.14.4",
         "pusher-js": "^4.3.1",
         "trumbowyg": "^2.10.0",
-        "vue-router": "^3.0.1"
+        "vue-router": "^3.0.1",
+        "blueimp-file-upload": "^9.27.0"
     }
 }
