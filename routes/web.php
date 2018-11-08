@@ -11,7 +11,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/checking', 'CheckingController@start')->name('checking');
+Route::get('/checking', 'CheckingController@start')->name('checking.start');
 
 Route::get('/statistic', 'StatisticController@index')->name('statistic');
 
