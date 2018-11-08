@@ -39,10 +39,15 @@ class Category extends Model
 
 
     /**
-     * @return BelongsToMany
-     */
-    public function queues(): BelongsToMany
+//     * @return BelongsToMany
+//     */
+//    public function queues(): BelongsToMany
+//    {
+//        return $this->belongsToMany(Queue::class);
+//    }
+
+    public function queues()
     {
-        return $this->belongsToMany(Queue::class);
+        return $this->hasMany('App\Entity\Queue', 'category_id');
     }
 }

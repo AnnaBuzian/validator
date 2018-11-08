@@ -3,4 +3,5 @@ return [
 
     // admin answer admin
     'createAnswer' => 'Create new answer',
+    'users' => 'Users',
 ];

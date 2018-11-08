@@ -14,6 +14,7 @@ return [
     'remember' => 'Запомнить меня',
     'resetPassword' => 'Сбросить пароль',
     'sendPasswordResetLink' => 'Отправить ссылку сброса пароля',
-    'admin' => 'Админка'
+    'admin' => 'Админка',
+    'logout' => 'Выйти'
 
 ];

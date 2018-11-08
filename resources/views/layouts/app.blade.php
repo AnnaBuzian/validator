@@ -54,7 +54,7 @@
                             </div>
                         @else
                             @if (!Auth::guest() && Auth::user()->hasRole('admin'))
-                                <li><a href="{{ url('/admin') }}">{{'auth.admin'}}</a></li>
+                                <li><a href="{{ url('/admin/user') }}">{{trans('auth.admin')}}</a></li>
                             @endif
 
                             <li class="dropdown">
@@ -67,7 +67,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{trans('auth.logout')}}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

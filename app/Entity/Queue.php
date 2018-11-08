@@ -20,7 +20,8 @@ class Queue extends Model
 
     /** @var array  */
     protected $casts = [
-        'id' => 'string'
+        'id' => 'string',
+        'category_id' => 'string'
     ];
 
     /** @var string  */

@@ -14,6 +14,7 @@ return [
     'remember' => 'Remember Me',
     'resetPassword' => 'Reset Password',
     'sendPasswordResetLink' => 'Send Password Reset Link',
-    'admin' => 'Admin'
+    'admin' => 'Admin',
+    'logout' => 'Logout'
 
 ];
