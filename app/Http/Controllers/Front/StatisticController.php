@@ -17,6 +17,9 @@ use App\Repositories\QueueRepository;
  */
 class StatisticController extends Controller
 {
+    /** @var QueueRepository  */
+    private $queueRepository;
+
     /**
      * Create a new controller instance.
      *
@@ -24,10 +27,11 @@ class StatisticController extends Controller
      */
     public function __construct(QueueRepository $repository)
     {
-        $this->queueRepositorie = $repository;
+        $this->queueRepository = $repository;
 
-        parent::__construct();
+        $this->middleware('auth');
     }
+
 
     /**
      * Show the application dashboard.
@@ -36,11 +40,7 @@ class StatisticController extends Controller
      */
     public function index()
     {
-        $categories = Category::search($request->input('q'))
-                ->with('author', 'likes')
-                ->withCount('comments', 'thumbnail', 'likes')
-                ->latest()
-                ->paginate(20);
+        $categories = Category::get();
 
         return view('front.statistic.index', compact('categories'));
     }

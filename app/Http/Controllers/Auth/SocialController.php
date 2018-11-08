@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Role;
+use App\Entity\Role;
 use Laravel\Socialite\Facades\Socialite;
-use App\User;
-use App\SocialAccount;
+use App\Entity\User;
+use App\Entity\SocialAccount;
 use Laravel\Socialite\Two\GoogleProvider;
 
 /**

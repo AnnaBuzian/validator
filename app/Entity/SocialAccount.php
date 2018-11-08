@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**

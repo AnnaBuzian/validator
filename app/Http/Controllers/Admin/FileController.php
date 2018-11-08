@@ -33,7 +33,7 @@ class FileController extends Controller
     public function __construct()
     {
         $this->url = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
-        parent::__construct();
+        $this->middleware('auth');
     }
 
 

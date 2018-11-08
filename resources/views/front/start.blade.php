@@ -5,6 +5,7 @@
         <dyv clas="row">
             <div>
                 <div class="text-center">
+                    <img src="{{$url}}" class="rounded mx-auto d-block">
                 </div>
             </div>
         </dyv>

@@ -23,9 +23,9 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-
-        parent::__construct();
+        $this->middleware('auth');
     }
+
 
     /**
      * Show the application dashboard.
@@ -34,10 +34,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $categories = Category::search($request->input('q'))
-                ->with('author', 'likes')
-                ->withCount('comments', 'thumbnail', 'likes')
-                ->latest()
+        $categories = Category::latest()
                 ->paginate(20);
 
         return view('front.profile.index', compact('categories'));

@@ -7,13 +7,23 @@ use App\Http\Requests\Admin\UsersRequest;
 use App\Entity\Role;
 use App\Entity\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Show the application users index.
      */
@@ -26,6 +36,8 @@ class UserController extends Controller
 
     /**
      * Display the specified resource edit form.
+     * @param User $user
+     * @return View
      */
     public function edit(User $user): View
     {
@@ -37,6 +49,9 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param UsersRequest $request
+     * @param User $user
+     * @return RedirectResponse
      */
     public function update(UsersRequest $request, User $user): RedirectResponse
     {

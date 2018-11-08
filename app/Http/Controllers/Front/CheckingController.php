@@ -12,8 +12,10 @@ namespace App\Http\Controllers;
 use App\Entity\Question;
 use App\Entity\Queue;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\Question as QuestionResource;
+use App\Http\Resources\Queue as QueueResource;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -27,7 +29,7 @@ class CheckingController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
+        $this->middleware('auth');
     }
 
 
@@ -38,15 +40,21 @@ class CheckingController extends Controller
     public function start(Request $request)
     {
         /** @var Queue $queue */
-        $queue = Queue::where('category_id', $request->input('category_id'))->with('category')->get();
+        $queue = Queue::where('category_id', $request->input('category_id'))
+            ->with('category')
+            ->orderBy('created_at')
+            ->first();
 
-        $questions = QuestionResource::collection(Question::with('answers')->orderBy('created_at'));
-        $contentImage = Storage::get($queue->pathToFile);
+        $url = Storage::disk('s3')->temporaryUrl(
+            $queue->pathToFile, Carbon::now()->addMinutes(5)
+        );
+
+        $questions = Question::with('answers')->orderBy('created_at')->get();
 
         return view('front.start', [
             'queue' => $queue,
-            'questions' => $questions,
-            'contentImage' => $contentImage
+            'questions' => QuestionResource::collection($questions),
+            'url' => $url
         ]);
     }
 
