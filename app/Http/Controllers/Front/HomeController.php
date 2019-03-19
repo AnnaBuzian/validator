@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+use App\Entity\Category;
+use Illuminate\Http\Request;
+use App\Http\Resources\Category as CategoryResource;
+
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
@@ -23,6 +30,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::withCount('queues')->get();
+
+        return view('home', [
+            'categories' => CategoryResource::collection($categories)
+        ]);
     }
 }

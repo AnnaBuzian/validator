@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ trans('app.title') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +29,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        {{ trans('app.title') }}
                     </a>
                 </div>
 
@@ -43,9 +44,21 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <div class="top-right links">
+                                <a href="{{ route('auth.social', 'facebook') }}" title="Facebook" class="btn btn-social-icon btn-facebook">
+                                    <span class="fa fa-facebook-official"></span>
+                                </a>
+                                <a href="{{ route('auth.social', 'google') }}" title="Google" class="btn btn-social-icon btn-google">
+                                    <span class="fa fa-google"></span>
+                                </a>
+                            </div>
                         @else
+                            <li><a href="{{ url('/admin/statistic') }}">{{trans('admin.Statistic')}}</a></li>
+                            <li><a href="{{ url('/admin/profile') }}">{{trans('admin.Profile')}}</a></li>
+                            @if (!Auth::guest() && Auth::user()->hasRole('admin'))
+                                <li><a href="{{ url('/users') }}">{{trans('auth.admin')}}</a></li>
+                            @endif
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -56,7 +69,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{trans('auth.logout')}}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

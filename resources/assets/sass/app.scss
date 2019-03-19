@@ -7,3 +7,52 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap-social/bootstrap-social";
+
+@import '~font-awesome/scss/font-awesome.scss';
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.background-welcome {
+  background: url("../images/themeforest.jpg") no-repeat center center;
+  height: 100%;
+  background-size: cover;
+}
+
+html, body {
+  background-color: #fff;
+  color: #636b6f;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  height: 100vh;
+  margin: 0;
+}
+
+.top-right {
+  position: relative;
+  top: 6px;
+}
+
+.title {
+  color: #fff;
+  font-weight: bold;;
+  font-size: 20px;
+}
+
+.links > a {
+  color: #fff;
+  padding: 0 25px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+.navbar-default .navbar-nav>li>a {
+  font-weight: bold;
+}
